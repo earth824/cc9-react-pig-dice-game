@@ -7,7 +7,7 @@ function PlayerScore(props) {
   return (
     <div className={classes}>
       <h1>Player {props.name}</h1>
-      <p className="player-score">0</p>
+      <p className="player-score">{props.score}</p>
     </div>
   );
 }
