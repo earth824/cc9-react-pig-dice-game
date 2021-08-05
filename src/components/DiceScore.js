@@ -1,30 +1,16 @@
-import { useState } from 'react';
-
 function DiceScore(props) {
-  const [diceScore, setDiceScore] = useState(1);
-  const [roundScore, setRoundScore] = useState(0);
-  // const { currentPlayer, setCurrentPlayer } = props;
-
   const handleClickRoll = () => {
-    const newDiceScore = Math.floor(Math.random() * 6) + 1;
-    if (newDiceScore !== 1) {
-      setRoundScore(curRoundScore => curRoundScore + newDiceScore);
-    } else {
-      const newCurrentPlayer = props.currentPlayer === 0 ? 1 : 0;
-      props.setCurrentPlayer(newCurrentPlayer);
-      setRoundScore(0);
-    }
-    setDiceScore(newDiceScore);
-  };
+    // const newDiceScore = Math.floor(Math.random() * 6) + 1; // 1,2,3,4,5,6
+    // props.setDiceScore(newDiceScore);
+    // if (newDiceScore !== 1) {
+    //   props.setRoundScore(props.roundScore + newDiceScore);
+    // } else {
+    //   const newCurrentPlayer = props.currentPlayer === 0 ? 1 : 0;
+    //   props.setCurrentPlayer(newCurrentPlayer);
+    //   props.setRoundScore(0);
+    // }
 
-  const handleClickKeep = () => {
-    const newScore = props.playerScore[props.currentPlayer] + roundScore;
-    const newPlayerScore = [...props.playerScore];
-    newPlayerScore[props.currentPlayer] = newScore;
-    props.setPlayerScore(newPlayerScore);
-    setRoundScore(0);
-    const newCurrentPlayer = props.currentPlayer === 0 ? 1 : 0;
-    props.setCurrentPlayer(newCurrentPlayer);
+    props.rollDice();
   };
 
   return (
@@ -33,15 +19,15 @@ function DiceScore(props) {
         <button className="btn btn-danger btn-fw" onClick={handleClickRoll}>
           Roll
         </button>
-        <button className="btn btn-success btn-fw" onClick={handleClickKeep}>
+        <button className="btn btn-success btn-fw" onClick={props.keepScore}>
           Keep
         </button>
       </div>
       <div className="row">
-        <div className="dice-score">{diceScore}</div>
+        <div className="dice-score">{props.diceScore}</div>
       </div>
       <div className="row">
-        <p className="round-score">Round Score: {roundScore}</p>
+        <p className="round-score">Round Score: {props.roundScore}</p>
       </div>
     </div>
   );

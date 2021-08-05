@@ -1,11 +1,7 @@
 function Header(props) {
-  const handleClickNew = () => {
-    props.detectClickNewBtn();
-  };
-
   return (
     <div className="header">
-      <button className="btn" onClick={handleClickNew}>
+      <button className="btn" onClick={props.reset}>
         New Game
       </button>
     </div>
